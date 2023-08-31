@@ -1,2 +1,2 @@
-# calculadora-web
-Projeto calculadora usando HTML, CSS e JS
+# Calculadora Web
+Projeto de uma calculadora usando HTML, CSS e JS
