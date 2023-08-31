@@ -42,9 +42,27 @@ document.getElementById('equal').addEventListener('click', calculate)
 
 // Create the calculate function
 function calculate() {
+  resultInput.value = 'ERRO'
+  resultInput.classList.add('error')
+
   const result = eval(input.value)
+
   resultInput.value = result
+  resultInput.classList.remove('error')
 }
+
+// Adds function to copy the result to the clipboard
+document.getElementById('copyToClipboard').addEventListener('click', function (ev) {
+  const button = ev.currentTarget
+  if (button.innerText === 'Copiar') {
+    button.innerText = 'Copiado!'
+    button.classList.add('success')
+    navigator.clipboard.writeText(resultInput.value)
+  } else {
+    button.innerText = 'Copiar'
+    button.classList.remove('success')
+  }
+})
 
 // Switch theme - Dark / Light
 document.getElementById('themeSwitcher').addEventListener('click', function () {
