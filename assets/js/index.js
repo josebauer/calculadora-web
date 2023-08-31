@@ -5,7 +5,20 @@ const resultInput = document.getElementById('result')
 
 const allowedKeys = ['(', ')', '/', '*', '-', '+', '9', '8', '7', '6', '5', '4', '3', '2', '1', '0', '.', '%', ' ']
 
-input.addEventListener('keydown', function(ev) {
+document.querySelectorAll('.charKey').forEach(function (charKeyBtn) {
+  charKeyBtn.addEventListener('click', function () {
+    const value = charKeyBtn.dataset.value
+    input.value += value
+    input.focus()
+  })
+})
+
+document.getElementById('clear').addEventListener('click', function () {
+  input.value = ''
+  input.focus()
+})
+
+input.addEventListener('keydown', function (ev) {
   ev.preventDefault()
   if (allowedKeys.includes(ev.key)) {
     input.value += ev.key
@@ -19,6 +32,8 @@ input.addEventListener('keydown', function(ev) {
     calculate()
   }
 })
+
+document.getElementById('equal').addEventListener('click', calculate)
 
 function calculate() {
   
