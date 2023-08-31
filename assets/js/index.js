@@ -3,8 +3,10 @@ const root = document.querySelector(':root')
 const input = document.getElementById('input')
 const resultInput = document.getElementById('result')
 
+// Keys allowed to input
 const allowedKeys = ['(', ')', '/', '*', '-', '+', '9', '8', '7', '6', '5', '4', '3', '2', '1', '0', '.', '%', ' ']
 
+// Adds functionality to the buttons.
 document.querySelectorAll('.charKey').forEach(function (charKeyBtn) {
   charKeyBtn.addEventListener('click', function () {
     const value = charKeyBtn.dataset.value
@@ -13,11 +15,13 @@ document.querySelectorAll('.charKey').forEach(function (charKeyBtn) {
   })
 })
 
+// Clear input
 document.getElementById('clear').addEventListener('click', function () {
   input.value = ''
   input.focus()
 })
 
+// Allows insertions of keys
 input.addEventListener('keydown', function (ev) {
   ev.preventDefault()
   if (allowedKeys.includes(ev.key)) {
@@ -33,9 +37,28 @@ input.addEventListener('keydown', function (ev) {
   }
 })
 
+// Adds functionality to the equal symbol
 document.getElementById('equal').addEventListener('click', calculate)
 
+// Create the calculate function
 function calculate() {
   const result = eval(input.value)
   resultInput.value = result
 }
+
+// Switch theme - Dark / Light
+document.getElementById('themeSwitcher').addEventListener('click', function () {
+  if (main.dataset.theme === 'dark') {
+    root.style.setProperty('--bg-color', '#f1f5f9')
+    root.style.setProperty('--border-color', '#aaa')
+    root.style.setProperty('--font-color', '#212529')
+    root.style.setProperty('--primary-color', '#ffd700')
+    main.dataset.theme = 'light'
+  } else {
+    root.style.setProperty('--bg-color', '#212529')
+    root.style.setProperty('--border-color', '#666')
+    root.style.setProperty('--font-color', '#f1f5f9')
+    root.style.setProperty('--primary-color', '#e5ff00')
+    main.dataset.theme = 'dark'
+  }
+})
